@@ -33,8 +33,7 @@ public class FormController {
                                         @RequestParam String password, //  @RequestParam para extraer el parámetro de consulta password.
                                         @RequestParam String email){  //  @RequestParam para extraer el parámetro de consulta email estos tres parametros provienen del formulario.
 
-
-        model.addAttribute("titulo", "Resultado del formulario");
+        model.addAttribute("titulo", "Resultado del formulario"); // con el objeto model utilizando clave valor pasamos datos a la vista resultado.html
         model.addAttribute("username", username);
         model.addAttribute("password", password);
         model.addAttribute("email", email);
