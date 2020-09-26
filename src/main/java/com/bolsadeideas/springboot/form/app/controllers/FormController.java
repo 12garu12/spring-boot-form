@@ -13,7 +13,7 @@ public class FormController {
      * @param model objeto de la interfaz model para pasa datos a la vista.
      * @return retorna una vista llamada form.html.
      */
-    @GetMapping("/form")
+    @GetMapping("/form") // Anotacion @GetMapping metodo de solicitud HTTP con el metodo GET.
     public String form(Model model){
         return "form";
     }
@@ -23,7 +23,7 @@ public class FormController {
      * @param model objeto de la interfaz model para pasa datos a la vista.
      * @return retorna una vista llamada resultado.html.
      */
-    @PostMapping("/form")
+    @PostMapping("/form")// Anotacion @PostMapping se usa para manejar el tipo de método de solicitud POST.
     public String procesar(Model model){
         return "resultado";
     }
