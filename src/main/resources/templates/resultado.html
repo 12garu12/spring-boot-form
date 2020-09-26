@@ -10,6 +10,7 @@
 
 <!--El controlador con la ruta @PostMapping("/form") retornara esta vista y le pasara el valor de las siguientes variables -->
 <ul>
+    <!-- Como en el controlador el objeto es mapeado, aqui en la vista se puede hacer el llamado a los metoso getters -->
     <li th:text="${usuario.username}"></li>
     <li th:text="${usuario.password}"></li>
     <li th:text="${usuario.email}"></li>

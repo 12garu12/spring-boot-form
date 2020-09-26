@@ -6,6 +6,7 @@ public class Usuario {
     private String password;
     private String email;
 
+/*  METODOS SETTER AND GETTER **************************************************************************************/
 
     public String getUsername() {
         return username;
