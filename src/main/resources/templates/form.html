@@ -2,9 +2,11 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${titulo}"></title>
 </head>
 <body>
+
+<h3 th:text="${titulo}"></h3>
 
 <!-- FORMULARIO -->
 <!-- El target action especifica la ruta del controlador y el tipo de metodo POST para procesar los datos los datos del formulario con el metodo y la ruta especificada -->
@@ -13,24 +15,24 @@
         <!-- el campo form es para mapear la entrada de tipo imput y va con el id -->
         <label for="username">Username</label>
         <div>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username"> <!-- Envia el parametro username al controlador-->
         </div>
     </div>
     <div>
         <label for="password">Password</label>
         <div>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password"><!-- Envia el parametro pasword al controlador-->
         </div>
     </div>
     <div>
         <label for="email">Email</label>
         <div>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email"> <!-- Envia el parametro email al controlador-->
         </div>
     </div>
     <div>
         <div>
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
         </div>
     </div>
 </form>

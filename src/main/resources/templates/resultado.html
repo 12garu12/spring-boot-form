@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+
+<h3 th:text="${titulo}"></h3>
+
+<!--El controlador con la ruta @PostMapping("/form") retornara esta vista y le pasara el valor de las siguientes variables -->
+<ul>
+    <li th:text="${username}"></li>
+    <li th:text="${password}"></li>
+    <li th:text="${email}"></li>
+</ul>
+
+</body>
+</html>
