@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.naming.Binding;
@@ -21,8 +22,10 @@ public class FormController {
      * @return retorna una vista llamada form.html.
      */
     @GetMapping("/form")
-    public String form(Usuario usuario, Model model){ // Se agrego el objeto usuario en los parametros por que da un error por el campo th:value="${usuario.username}" en el formulario al no reconocer usuario daba un error en el servidor.
+    public String form(Model model){ // Se agrego el objeto usuario en los parametros por que da un error por el campo th:value="${usuario.username}" en el formulario al no reconocer usuario daba un error en el servidor.
+        Usuario usuario = new Usuario(); // una forma es crear el objeto manualmente para pasar los datos del objeto a la vista form
         model.addAttribute("titulo", "Formulario Usuarios");
+        model.addAttribute("user", usuario); // para pasar datos a la vista con la anotación @ModelAtribute con el nombre user.
         return "form";
     }
 
@@ -32,9 +35,11 @@ public class FormController {
      * @return retorna una vista llamada resultado.html con el resultado del procesamiento de los datos.
      */
     @PostMapping("/form")
-    public String procesar(@Valid Usuario usuario, BindingResult result, Model model){  /*1- Anotación @Valid para validar los datos mapeados hacia la clase usuario
+    public String procesar(@Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model){  /*1- Anotación @Valid para validar los datos mapeados hacia la clase usuario
     3- interface BindingResult contiene los mensajes de error de la validacion en caso de que hayan errores va unido a @Valid justo despues de esta anotación como regla
-    va de primero en los argumentos el objeto validado y segundo el BindingResul */
+    va de primero en los argumentos el objeto validado y segundo el BindingResul
+    4- @ModelAttribute para cambiar el nombre con que pasamos los datos a la vista*/
+
 
         model.addAttribute("titulo", "Resultado del formulario"); // con el objeto model utilizando clave valor pasamos datos a la vista resultado.html
 

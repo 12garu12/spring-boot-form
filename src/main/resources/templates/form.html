@@ -17,7 +17,7 @@
         <div>
             <!-- el campo value es con el nombre de la clase pero en minuscula como lo es usuario y por debajo hace la consulta al
             metodo getUsername y del mismo modo para cada entrada del formulario -->
-            <input type="text" name="username" id="username" th:value="${usuario.username}">
+            <input type="text" name="username" id="username" th:value="${user.username}">
         </div>
         <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult-->
         <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>
@@ -32,7 +32,7 @@
     <div>
         <label for="email">Email</label>
         <div>
-            <input type="text" name="email" id="email" th:value="${usuario.email}"> <!-- Envia el parametro email al controlador-->
+            <input type="text" name="email" id="email" th:value="${user.email}"> <!-- Envia el parametro email al controlador-->
         </div>
     </div>
     <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div> <!-- para los mensajes de eror de la validacion en el controlador -->
