@@ -3,9 +3,19 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import javax.validation.constraints.NotEmpty;
 
 public class Usuario {
+
+    private String identificador;
+
+    @NotEmpty
+    private String nombre;
+
+    @NotEmpty
+    private String apellido;
+
     // 2- anotacion @NotEmpty valida que el campo sea diferente de null y que tenga una longitud, que el campo es requerido.
     @NotEmpty
-    private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario para que los de la clase sean directamente mapeados a la clase.
+    private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario
+    // para que los de la clase sean directamente mapeados a la clase.
 
     @NotEmpty
     private String password;
@@ -14,6 +24,22 @@ public class Usuario {
     private String email;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
     public String getUsername() {
         return username;
@@ -37,5 +63,13 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 }
