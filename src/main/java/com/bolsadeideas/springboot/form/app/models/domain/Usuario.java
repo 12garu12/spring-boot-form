@@ -1,9 +1,17 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
-public class Usuario {
+import javax.validation.constraints.NotEmpty;
 
-    private String username;
+public class Usuario {
+    // 2- anotacion @NotEmpty valida que el campo sea diferente de null y que tenga una longitud, que el campo es requerido.
+    @NotEmpty
+    private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario
+                             // para que los de la clase sean directamente mapeados a la clase.
+
+    @NotEmpty
     private String password;
+
+    @NotEmpty
     private String email;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/

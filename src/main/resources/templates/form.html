@@ -15,21 +15,27 @@
         <!-- el campo form es para mapear la entrada de tipo imput y va con el id -->
         <label for="username">Username</label>
         <div>
-            <input type="text" name="username" id="username"> <!-- Envia el parametro username al controlador-->
+            <!-- el campo value es con el nombre de la clase pero en minuscula como lo es usuario y por debajo hace la consulta al
+            metodo getUsername y del mismo modo para cada entrada del formulario -->
+            <input type="text" name="username" id="username" th:value="${usuario.username}">
         </div>
+        <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult-->
+        <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>
     </div>
     <div>
         <label for="password">Password</label>
         <div>
-            <input type="password" name="password" id="password"><!-- Envia el parametro pasword al controlador-->
+            <input type="password" name="password" id="password" th:value="${usuario.password}"><!-- Envia el parametro pasword al controlador-->
         </div>
+        <div th:if="${error != null && error.containsKey('password')}" th:text="${error.get('password')}"></div> <!-- para los mensajes de eror de la validacion en el controlador -->
     </div>
     <div>
         <label for="email">Email</label>
         <div>
-            <input type="text" name="email" id="email"> <!-- Envia el parametro email al controlador-->
+            <input type="text" name="email" id="email" th:value="${usuario.email}"> <!-- Envia el parametro email al controlador-->
         </div>
     </div>
+    <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div> <!-- para los mensajes de eror de la validacion en el controlador -->
     <div>
         <div>
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
