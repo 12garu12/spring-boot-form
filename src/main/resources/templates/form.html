@@ -9,33 +9,41 @@
 <h3 th:text="${titulo}"></h3>
 
 <!-- FORMULARIO -->
-<!-- El target action especifica la ruta del controlador y el tipo de metodo POST para procesar los datos los datos del formulario con el metodo y la ruta especificada -->
-<form th:action="@{/form}" method="post">
+<!-- El target action especifica la ruta del controlador y el tipo de metodo POST para procesar los datos los datos del formulario con el metodo y la ruta especificada
+El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y cada uno de sus campos al formulario -->
+<form th:action="@{/form}" th:object="${usuario}" method="post">
     <div>
-        <!-- el campo form es para mapear la entrada de tipo imput y va con el id -->
+        <!-- el campo for es para mapear la entrada de tipo imput y va con el id -->
         <label for="username">Username</label>
         <div>
             <!-- el campo value es con el nombre de la clase pero en minuscula como lo es usuario y por debajo hace la consulta al
-            metodo getUsername y del mismo modo para cada entrada del formulario -->
-            <input type="text" name="username" id="username" th:value="${user.username}">
+            metodo getUsername y del mismo modo para cada entrada del formulario
+            th:field="*{username} Para mapear el campo de un formulario a un objeto con thymeleaf y Spring hacia los atributos de una clase en este caso la clase Usuario.
+            utilizamos el (*) hace referencia a un mapeo o asignacion de un campo a un atributo de una clase-->
+            <input type="text" id="username" th:field="*{username}">
         </div>
-        <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult-->
-        <div th:if="${error != null && error.containsKey('username')}" th:text="${error.username}"></div>
+        <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult
+        Estos mensajes de error los manejara thymeleaf y Spring
+        # para utilizar un objeto propio de thymeleaf un helper para validar y obtener los mensajes de error
+        *{} para mapear campos al formulario ya sea de un atributo entity
+        ${} para una expresión con codigo Java
+        @{} para mapeo de rutas URL-->
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
     </div>
     <div>
         <label for="password">Password</label>
         <div>
-            <input type="password" name="password" id="password" th:value="${usuario.password}"><!-- Envia el parametro pasword al controlador-->
+            <input type="password" id="password" th:field="*{password}">
         </div>
-        <div th:if="${error != null && error.containsKey('password')}" th:text="${error.get('password')}"></div> <!-- para los mensajes de eror de la validacion en el controlador -->
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
     </div>
     <div>
         <label for="email">Email</label>
         <div>
-            <input type="text" name="email" id="email" th:value="${user.email}"> <!-- Envia el parametro email al controlador-->
+            <input type="text" id="email" th:field="*{email}">
         </div>
     </div>
-    <div th:if="${error != null && error.containsKey('email')}" th:text="${error.email}"></div> <!-- para los mensajes de eror de la validacion en el controlador -->
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     <div>
         <div>
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
