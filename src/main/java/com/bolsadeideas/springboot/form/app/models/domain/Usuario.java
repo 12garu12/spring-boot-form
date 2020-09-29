@@ -8,7 +8,9 @@ public class Usuario {
 
     private String identificador;
 
-    @NotEmpty(message = "El campo Nombre no debe estar vacio.") // message Para personalizar los mensajes de error en la validacion
+    // message Para personalizar los mensajes de error en la validacion tambien con el nombre de la anotacion en un
+    // archivo properties y prima por encima del atributo message de la anotacion.
+    @NotEmpty(message = "El campo Nombre no debe estar vacio.")
     private String nombre;
 
     @NotEmpty
@@ -24,7 +26,7 @@ public class Usuario {
     private String password;
 
     @NotEmpty
-    @Email(message = "El campo Email tiene un formato incorrecto.") // Validacion para que la direccion de correo este bien formada
+    @Email
     private String email;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
