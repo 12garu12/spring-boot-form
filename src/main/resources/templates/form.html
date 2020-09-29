@@ -61,6 +61,13 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     </div>
     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     <div>
+    <label for="identificador">Identificador</label>
+    <div>
+        <input type="text" id="identificador" th:field="*{identificador}">
+    </div>
+    <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+    </div>
+    <div>
         <div>
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
         </div>

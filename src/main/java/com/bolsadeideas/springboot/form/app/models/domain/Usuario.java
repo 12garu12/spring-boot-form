@@ -2,10 +2,21 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuario {
 
+    /* Utilizando expresiones regulares y la anotacion @Pattern para validacion
+    * [0-9] en un rango de 0 a 9
+    * {2} de 2 caracteres
+    * [.] seguido de un punto
+    * [\\d] cualquier digito de 0 a9
+    * {3} de 3 digitos
+    * [-] seguido de un guion
+    * [A-Z] un caracter de la A a la Z en mayuscula
+    * */
+    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
     private String identificador;
 
     // message Para personalizar los mensajes de error en la validacion tambien con el nombre de la anotacion en un
