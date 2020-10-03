@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -31,6 +32,18 @@ public class FormController {
     @Autowired // Inyectamos nuestra clase validadora.
     private UsuarioValidador validador;
 
+    /* Otra alternativa en vez de utilizat de forma explicita en el codigo el validate y lo vamos a automatizar para que se valide con la anotacion @Valid de forma transparente si hacer nada en el
+    procesar osea en el metodo handler (@PostMapping("/form")) para eso tenemos que implementar y registrar este validador en el InitBinder cuando se inicializa el proceso de validacion y el proceso
+    de pasar los datos al objeto usuario pero eso se hace detras de escena por debajo lo hace el framework cuando se envian los datos del formulario el controlador los recibe y los puebla al objeto usuario
+    y tambien los valida eso seria el inicializar el InitBinder */
+    @InitBinder
+    public void initBinder(WebDataBinder binder) { // WebDataBinder un objeto propio de Spring
+        binder.addValidators(validador); /* le pasamos el atributo validador de UsuarioValidador y lo que hace es validar de forma transparente
+        Con el metodo addValidators lo que hace es agregar un nuevo validador al Stack el initBinder esta anotacion es un evento del ciclo de
+        vida del controlador cuando se inicializa el binder. De esta manera no se pierden las anotaciones validadoras que existen en el Entity
+        Usuario, este metodo tiene la ventaja de que desacopla del metodo handler del controlador lo que tenemos en la clase UsuarioValidador
+        siendo una forma mas implicita */
+    }
     /**
      * Metodo para la vista del formulario en una vista HTML.
      * @param model objeto de la interfaz model para pasa datos a la vista.
@@ -58,7 +71,7 @@ public class FormController {
     va de primero en los argumentos el objeto validado y segundo el BindingResul
     4- @ModelAttribute para cambiar el nombre con que pasamos los datos a la vista*/
 
-        validador.validate(usuario, result); // la inyeccion hace el llamado al metodo validate de la clase UsuarioValidador y pasa el target(objeto usuario)
+//        validador.validate(usuario, result); // la inyeccion hace el llamado al metodo validate de la clase UsuarioValidador y pasa el target(objeto usuario)
         // pasamos para validar el objeto y el objeto de BindingResult que es el objeto que pasa los errores
 
 

@@ -24,9 +24,10 @@ public class UsuarioValidador implements Validator {
     public void validate(Object target, Errors errors) {
         Usuario usuario = (Usuario) target; // Hacerle un cast y tenemos el usuario para poder validar sus campos
 
-        ValidationUtils.rejectIfEmpty(errors, "nombre", "NotEmpty.usuario.nombre"); // Utilizando la clase helper o de utilidad de Spring(ValidationUtils)
-        // Con le metodo (rejectIfEmpty) significa que rechaza la validación con un mensaje de error y esta asociado a un campo
-        // 1- Como argumento se pasa el objeto errors. 2- argumento del atributo con el mismo nombre que en la clase el que se quiere validar en un String
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuario.nombre"); // Utilizando la clase helper o de utilidad de Spring(ValidationUtils)
+        // Con le metodo (rejectIfEmptyOrWhitespace) significa que rechaza la validación con un mensaje de error si esta vacio o con espacios en blanco y esta asociado a un campo.
+        // 1- Como argumento se pasa el objeto errors.
+        // 2- argumento del atributo con el mismo nombre que en la clase el que se quiere validar en un String
         // 3- argumento el mensaje de error que esta en el messages.properties(NotEmpty.usuario.nombre) que apunta al properties
 
         // Otra al ternativa con un if y a si de esta manera como se muestra en esta clase se puede validar muchos campos de las clases Entity

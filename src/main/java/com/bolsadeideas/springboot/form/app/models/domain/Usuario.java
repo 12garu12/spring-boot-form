@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -28,7 +29,7 @@ public class Usuario {
     private String apellido;
 
     // 2- anotacion @NotEmpty valida que el campo sea diferente de null y que tenga una longitud, que el campo es requerido.
-    @NotEmpty
+    @NotBlank // Para la validacion que el campo no tenga espacios en blanco no es recomenda usarlo junto con la anotacion @NotEmpty por que las validara a todas solo con @NOtBlank esta bien
     @Size(min = 3, max = 8) // Validacion de tamaño solo para String
     private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario
     // para que los de la clase sean directamente mapeados a la clase.
