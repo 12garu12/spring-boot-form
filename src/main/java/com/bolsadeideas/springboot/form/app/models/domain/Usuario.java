@@ -2,7 +2,7 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+//import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuario {
@@ -16,12 +16,12 @@ public class Usuario {
     * [-] seguido de un guion
     * [A-Z] un caracter de la A a la Z en mayuscula
     * */
-    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    // @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}") Se comento por que se va ha validar en la clase validation.
     private String identificador;
 
     // message Para personalizar los mensajes de error en la validacion tambien con el nombre de la anotacion en un
     // archivo properties y prima por encima del atributo message de la anotacion.
-    @NotEmpty(message = "El campo Nombre no debe estar vacio.")
+    // @NotEmpty(message = "El campo Nombre no debe estar vacio.") Se comento por que se va ha validar en la clase validation.
     private String nombre;
 
     @NotEmpty

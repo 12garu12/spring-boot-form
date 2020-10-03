@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +27,9 @@ import javax.validation.Valid;
 * IDs que son propios del formularios he internos o cualquier otra informacion
 *  */
 public class FormController {
+
+    @Autowired // Inyectamos nuestra clase validadora.
+    private UsuarioValidador validador;
 
     /**
      * Metodo para la vista del formulario en una vista HTML.
@@ -52,6 +57,9 @@ public class FormController {
     3- interface BindingResult contiene los mensajes de error de la validacion en caso de que hayan errores va unido a @Valid justo despues de esta anotación como regla
     va de primero en los argumentos el objeto validado y segundo el BindingResul
     4- @ModelAttribute para cambiar el nombre con que pasamos los datos a la vista*/
+
+        validador.validate(usuario, result); // la inyeccion hace el llamado al metodo validate de la clase UsuarioValidador y pasa el target(objeto usuario)
+        // pasamos para validar el objeto y el objeto de BindingResult que es el objeto que pasa los errores
 
 
         model.addAttribute("titulo", "Resultado del formulario"); // con el objeto model utilizando clave valor pasamos datos a la vista resultado.html
