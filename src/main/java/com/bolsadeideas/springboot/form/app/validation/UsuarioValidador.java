@@ -22,7 +22,9 @@ public class UsuarioValidador implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+/*
         Usuario usuario = (Usuario) target; // Hacerle un cast y tenemos el usuario para poder validar sus campos
+*/
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuario.nombre"); // Utilizando la clase helper o de utilidad de Spring(ValidationUtils)
         // Con le metodo (rejectIfEmptyOrWhitespace) significa que rechaza la validación con un mensaje de error si esta vacio o con espacios en blanco y esta asociado a un campo.
@@ -31,11 +33,11 @@ public class UsuarioValidador implements Validator {
         // 3- argumento el mensaje de error que esta en el messages.properties(NotEmpty.usuario.nombre) que apunta al properties
 
         // Otra al ternativa con un if y a si de esta manera como se muestra en esta clase se puede validar muchos campos de las clases Entity
-        if (!usuario.getIdentificador().matches("[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")){ // El metodo matches valida que este correcto.
-            errors.rejectValue("identificador", "pattern.usuario.identificador");
+        /*if (!usuario.getIdentificador().matches("[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")){ // El metodo matches valida que este correcto.
+            errors.rejectValue("identificador", "pattern.usuario.identificador"); // se desabilita para validar con la anotacion personalizada.
             // 1- Argumento ("identificador") con el mismo nombre del atributo
             // 2- argumento("pattern.usuario.identificador") el mensaje de error que esta en el messages.properties que apunta al properties
-        }
+        }*/
 
     }
 
