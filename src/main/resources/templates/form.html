@@ -26,8 +26,6 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
             <input type="text" id="apellido" th:field="*{apellido}">
         </div>
     </div>
-    <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
-
     <div>
         <!-- el campo for es para mapear la entrada de tipo imput y va con el id -->
         <label for="username">Username</label>
@@ -61,11 +59,11 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     </div>
     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     <div>
-    <label for="identificador">Identificador</label>
-    <div>
-        <input type="text" id="identificador" th:field="*{identificador}">
-    </div>
-    <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+        <label for="identificador">Identificador</label>
+        <div>
+            <input type="text" id="identificador" th:field="*{identificador}">
+        </div>
+        <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
     </div>
     <div>
         <div>

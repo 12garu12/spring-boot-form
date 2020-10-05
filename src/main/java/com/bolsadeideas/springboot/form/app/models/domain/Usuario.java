@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
+import com.bolsadeideas.springboot.form.app.validation.Requerido;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -28,7 +29,8 @@ public class Usuario {
     // @NotEmpty(message = "El campo Nombre no debe estar vacio.") Se comento por que se va ha validar en la clase validation.
     private String nombre;
 
-    @NotEmpty
+    //@NotEmpty
+    @Requerido
     private String apellido;
 
     // 2- anotacion @NotEmpty valida que el campo sea diferente de null y que tenga una longitud, que el campo es requerido.
@@ -40,7 +42,7 @@ public class Usuario {
     @NotEmpty
     private String password;
 
-    @NotEmpty
+    @Requerido
     @Email
     private String email;
 
