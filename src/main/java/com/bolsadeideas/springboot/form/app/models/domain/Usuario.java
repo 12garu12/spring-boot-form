@@ -2,8 +2,10 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 //import javax.validation.constraints.Pattern;
 
 
@@ -48,6 +50,10 @@ public class Usuario {
     @Min(5) // Valida que el valor minimo del numero entero sea 5
     @Max(5000)  // Valida que el valor maximo del numero entero sea 5000
     private Integer cuenta;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy/MM/dd") // Anotacion para darle un formato a la fecha que queremos en el atributo puede ser cualquier formato de fecha
+    private Date fechaNacimiento;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
@@ -107,4 +113,11 @@ public class Usuario {
         this.cuenta = cuenta;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 }
