@@ -77,7 +77,8 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     <div>
         <label for="fechaNacimiento">Fecha de Nacimiento</label>
         <div>
-            <input type="text" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd">
+            <input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd">
+            <!-- type="date" campo que pertenece html 5 es para entradas de tipo fecha. -->
         </div>
         <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
     </div>
