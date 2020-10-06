@@ -3,11 +3,9 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 //import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 
 public class Usuario {
 
@@ -39,12 +37,17 @@ public class Usuario {
     private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario
     // para que los de la clase sean directamente mapeados a la clase.
 
-    @NotEmpty
+    @NotEmpty  /* Las anotaciones @NotEmpty y @NotBlank son para Strings */
     private String password;
 
     @Requerido
     @Email
     private String email;
+
+    @NotNull  /* Esta anotacion es la mas indicdda para validacion de un campo qu sea del tipo entero  Se utiliza para validar objetos*/
+    @Min(5) // Valida que el valor minimo del numero entero sea 5
+    @Max(5000)  // Valida que el valor maximo del numero entero sea 5000
+    private Integer cuenta;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
@@ -95,4 +98,13 @@ public class Usuario {
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
+    }
+
 }

@@ -61,7 +61,7 @@ public class FormController {
     }
 
     /**
-     * Metodo para la respuesta que procesa los datos que llegan del formulario el formulario
+     * Metodo para la respuesta que procesa los datos que llegan del formulario el formulario.
      * @param model objeto de la interfaz model para pasa datos a la vista.
      * @return retorna una vista llamada resultado.html con el resultado del procesamiento de los datos.
      */
