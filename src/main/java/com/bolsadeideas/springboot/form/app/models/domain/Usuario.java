@@ -54,7 +54,7 @@ public class Usuario {
     @NotNull
     //@Past // Para validar que la fecha que se introduce en el formulario sea una fecha pasada a la actual.
     @Future  // Para validar que la fecha que se introduce en el formulario sea una fecha futura a la actual.
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // Formato de fecha para html para navegadores como chrome o firefox el cual es el que nos dara el valor del atributo segun la fecha
+    //@DateTimeFormat(pattern = "yyyy-MM-dd") // Se comento para validar con CustomDateEditor en el controller
     private Date fechaNacimiento;
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/

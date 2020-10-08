@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.form.app.controllers;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @SessionAttributes("usuario")
@@ -43,6 +46,14 @@ public class FormController {
         vida del controlador cuando se inicializa el binder. De esta manera no se pierden las anotaciones validadoras que existen en el Entity
         Usuario, este metodo tiene la ventaja de que desacopla del metodo handler del controlador lo que tenemos en la clase UsuarioValidador
         siendo una forma mas implicita */
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false); // setLenient es la indulgencia que define si el analizador que va ha realizar un analisis de la fecha con este formato, si este analizador es estricto o tolerante al interpretar
+        // este patron por ejemplo si escrigimos mal el formato el de forma automatica lo va ha convertir y no va haber ningun error, pero lo ideal es que sea estricto que no sea tolerante por eso lo dejamos en false
+        // para evitar que no coloquen fechas en un formato que no sea el correcto ya que el analizador lo podria interpretar de forma distinta a como esperamos la fecha, para evitar la ambiguedad con la fecha, si la
+        // fecha no esta correcta lanzara un error, esto se esta manejando con validacion en messages.properties
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false)); // false que no permite vacios
+
     }
     /**
      * Metodo para la vista del formulario en una vista HTML.
