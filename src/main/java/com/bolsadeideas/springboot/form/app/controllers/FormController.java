@@ -14,7 +14,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @SessionAttributes("usuario")
@@ -62,6 +64,16 @@ public class FormController {
         binder.registerCustomEditor(String.class, "apellido",new NombreMayusculaEditor());
 
     }
+
+    /**
+     * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
+     * @return una lista de varios paises.
+     */
+    @ModelAttribute("paises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna.
+    public List<String> paises(){
+        return Arrays.asList("España", "Mexico", "Chile", "Argentina","Perú", "Colombia", "Venezuela");
+    }
+
     /**
      * Metodo para la vista del formulario en una vista HTML.
      * @param model objeto de la interfaz model para pasa datos a la vista.

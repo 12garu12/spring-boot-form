@@ -57,6 +57,9 @@ public class Usuario {
     //@DateTimeFormat(pattern = "yyyy-MM-dd") // Se comento para validar con CustomDateEditor en el controller
     private Date fechaNacimiento;
 
+    @NotEmpty
+    private String pais; // Para lista select o desplegable para el formulario
+
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
     public String getNombre() {
@@ -121,5 +124,13 @@ public class Usuario {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

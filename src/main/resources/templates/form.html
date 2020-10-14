@@ -14,6 +14,18 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
 <form th:action="@{/form}" th:object="${usuario}" method="post">
 
     <div>
+        <label for="pais">País</label>
+        <div>
+            <select id="pais" th:field="*{pais}">
+                <option value="">-- seleccionar --</option> <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
+                <!-- El metodo en el controlador llamado paises esta mapeado a este select-->
+                <option th:each="pais: ${paises}" th:text="${pais}" th:value="${pais}"></option>
+            </select>
+        </div>
+        <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+    </div>
+
+    <div>
         <label for="nombre">Nombre</label>
         <div>
             <input type="text" id="nombre" th:field="*{nombre}">
@@ -73,7 +85,6 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         </div>
         <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
     </div>
-
     <div>
         <label for="fechaNacimiento">Fecha de Nacimiento</label>
         <div>
@@ -82,7 +93,6 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         </div>
         <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
     </div>
-
     <div>
         <div>
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
