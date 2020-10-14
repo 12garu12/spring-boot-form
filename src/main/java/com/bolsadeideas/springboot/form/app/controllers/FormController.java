@@ -52,7 +52,8 @@ public class FormController {
         // este patron por ejemplo si escrigimos mal el formato el de forma automatica lo va ha convertir y no va haber ningun error, pero lo ideal es que sea estricto que no sea tolerante por eso lo dejamos en false
         // para evitar que no coloquen fechas en un formato que no sea el correcto ya que el analizador lo podria interpretar de forma distinta a como esperamos la fecha, para evitar la ambiguedad con la fecha, si la
         // fecha no esta correcta lanzara un error, esto se esta manejando con validacion en messages.properties
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false)); // false que no permite vacios
+        binder.registerCustomEditor(Date.class, "fechaNacimiento",new CustomDateEditor(dateFormat, true)); // false que no permite vacios, El metodo registerCustomEditor
+        // tambien se puede mapear de una forma mas especifica a un campo especifico como el fechaNacimiento de la clase usuario
 
     }
     /**
