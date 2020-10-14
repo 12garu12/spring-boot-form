@@ -2,7 +2,7 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.util.Date;
@@ -52,8 +52,8 @@ public class Usuario {
     private Integer cuenta;
 
     @NotNull
-    //@Past // Para validar que la fecha que se introduce en el formulario sea una fecha pasada a la actual.
-    @Future  // Para validar que la fecha que se introduce en el formulario sea una fecha futura a la actual.
+    @Past // Para validar que la fecha que se introduce en el formulario sea una fecha pasada a la actual.
+    //@Future  // Para validar que la fecha que se introduce en el formulario sea una fecha futura a la actual.
     //@DateTimeFormat(pattern = "yyyy-MM-dd") // Se comento para validar con CustomDateEditor en el controller
     private Date fechaNacimiento;
 

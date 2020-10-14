@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
+import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class FormController {
         // fecha no esta correcta lanzara un error, esto se esta manejando con validacion en messages.properties
         binder.registerCustomEditor(Date.class, "fechaNacimiento",new CustomDateEditor(dateFormat, true)); // false que no permite vacios, El metodo registerCustomEditor
         // tambien se puede mapear de una forma mas especifica a un campo especifico como el fechaNacimiento de la clase usuario
+
+        // Tenemos que registrar otro customEditor para la clase propia que creamos llamada NombreMayusculaEditor con
+        // 2 parametros es global para todos los campos String y con 3 parametros especificamos a que clase se va ha aplicar
+        binder.registerCustomEditor(String.class, "nombre",new NombreMayusculaEditor());
+        binder.registerCustomEditor(String.class, "apellido",new NombreMayusculaEditor());
 
     }
     /**
