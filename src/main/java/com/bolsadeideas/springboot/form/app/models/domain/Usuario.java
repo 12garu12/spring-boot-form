@@ -58,7 +58,7 @@ public class Usuario {
     private Date fechaNacimiento;
 
     @NotEmpty
-    private String pais; // Para lista select o desplegable para el formulario
+    private String pais; // Para lista select o desplegable para el formulario con formato en la vista
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 

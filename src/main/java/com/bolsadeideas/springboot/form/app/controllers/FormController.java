@@ -69,8 +69,8 @@ public class FormController {
      * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
      * @return una lista de varios paises.
      */
-    @ModelAttribute("paises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna.
-    public List<String> paises(){
+    @ModelAttribute("paises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna
+    public List<String> paises(){ /* lista para el campo desplegable en el formulario*/
         return Arrays.asList("España", "Mexico", "Chile", "Argentina","Perú", "Colombia", "Venezuela");
     }
 

@@ -16,6 +16,7 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     <div>
         <label for="pais">País</label>
         <div>
+            <!-- Lista desplegable -->
             <select id="pais" th:field="*{pais}">
                 <option value="">-- seleccionar --</option> <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
                 <!-- El metodo en el controlador llamado paises esta mapeado a este select-->
@@ -68,8 +69,8 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         <div>
             <input type="text" id="email" th:field="*{email}">
         </div>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     </div>
-    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     <div>
         <label for="identificador">Identificador</label>
         <div>
