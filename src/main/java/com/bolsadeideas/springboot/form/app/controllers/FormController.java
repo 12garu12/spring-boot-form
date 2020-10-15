@@ -14,9 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @SessionAttributes("usuario")
@@ -72,6 +70,23 @@ public class FormController {
     @ModelAttribute("paises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna
     public List<String> paises(){ /* lista para el campo desplegable en el formulario*/
         return Arrays.asList("España", "Mexico", "Chile", "Argentina","Perú", "Colombia", "Venezuela");
+    }
+
+    /**
+     * Metodo para utilizar en un campo del formulario con una lista desplegable con nombres de paises
+     * @return una lista de varios paises.
+     */
+    @ModelAttribute("paisesMap") // El argumento es el nombre con el cual se pasa a la vista lo que retorna
+    public Map<String, String > paisesMap(){ /* lista para el campo desplegable en el formulario*/
+        Map<String, String> paises = new HashMap<>();
+        paises.put("ES", "España");
+        paises.put("MX", "Mexico");
+        paises.put("CL", "Chile");
+        paises.put("AR", "Argentina");
+        paises.put("PE", "Perú");
+        paises.put("CO", "Colombia");
+        paises.put("VE", "Venezuela");
+        return paises;
     }
 
     /**
