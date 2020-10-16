@@ -4,6 +4,7 @@ import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
 //import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 //import javax.validation.constraints.Pattern;
@@ -57,8 +58,8 @@ public class Usuario {
     //@DateTimeFormat(pattern = "yyyy-MM-dd") // Se comento para validar con CustomDateEditor en el controller
     private Date fechaNacimiento;
 
-    @NotEmpty
-    private String pais; // Para lista select o desplegable para el formulario con formato en la vista
+    @Valid // Importante para validar la clase segun el dato
+    private Pais pais; // Para lista select o desplegable para el formulario con formato en la vista
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
@@ -126,11 +127,11 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getPais() {
+    public Pais getPais() {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 }

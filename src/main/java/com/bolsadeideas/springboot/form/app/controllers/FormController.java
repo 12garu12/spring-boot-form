@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,25 @@ public class FormController {
         binder.registerCustomEditor(String.class, "apellido",new NombreMayusculaEditor());
 
     }
+
+    /**
+     * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
+     * @return una lista de varios paises.
+     */
+    @ModelAttribute("listaPaises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna
+    public List<Pais> listaPaises(){ /* lista para el campo desplegable en el formulario*/
+        return Arrays.asList(
+                new Pais(1, "Es","España"),
+                new Pais(2, "MX","Mexico"),
+                new Pais(3, "CL","Chile"),
+                new Pais(4, "AR","Argentina"),
+                new Pais(5, "PE","Perú"),
+                new Pais(6, "CO","Colombia"),
+                new Pais(7, "VE","Venezuela")
+        );
+    }
+
+
 
     /**
      * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
