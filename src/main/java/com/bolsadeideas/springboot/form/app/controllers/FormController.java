@@ -1,8 +1,10 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
+import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.services.PaisService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -37,6 +39,12 @@ public class FormController {
     @Autowired // Inyectamos nuestra clase validadora.
     private UsuarioValidador validador;
 
+    @Autowired
+    private PaisService paisService;
+
+    @Autowired
+    private PaisPropertyEditor paisEditor;
+
     /* Otra alternativa en vez de utilizat de forma explicita en el codigo el validate y lo vamos a automatizar para que se valide con la anotacion @Valid de forma transparente si hacer nada en el
     procesar osea en el metodo handler (@PostMapping("/form")) para eso tenemos que implementar y registrar este validador en el InitBinder cuando se inicializa el proceso de validacion y el proceso
     de pasar los datos al objeto usuario pero eso se hace detras de escena por debajo lo hace el framework cuando se envian los datos del formulario el controlador los recibe y los puebla al objeto usuario
@@ -62,6 +70,10 @@ public class FormController {
         binder.registerCustomEditor(String.class, "nombre",new NombreMayusculaEditor());
         binder.registerCustomEditor(String.class, "apellido",new NombreMayusculaEditor());
 
+        /*Dado que Spring no puede detectar el editor de propiedades, necesitaremos un método anotado con  @InitBinder
+        en nuestra clase Controller que registra el editor:*/
+        binder.registerCustomEditor(Pais.class, "pais", paisEditor);
+
     }
 
     /**
@@ -70,15 +82,7 @@ public class FormController {
      */
     @ModelAttribute("listaPaises") // El argumento es el nombre con el cual se pasa a la vista lo que retorna
     public List<Pais> listaPaises(){ /* lista para el campo desplegable en el formulario*/
-        return Arrays.asList(
-                new Pais(1, "Es","España"),
-                new Pais(2, "MX","Mexico"),
-                new Pais(3, "CL","Chile"),
-                new Pais(4, "AR","Argentina"),
-                new Pais(5, "PE","Perú"),
-                new Pais(6, "CO","Colombia"),
-                new Pais(7, "VE","Venezuela")
-        );
+        return paisService.listar();
     }
 
 

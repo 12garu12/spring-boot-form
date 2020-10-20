@@ -16,14 +16,13 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     <div>
         <label for="pais">País</label>
         <div>
-            <select id="pais" th:field="*{pais.id}">
+            <select id="pais" th:field="*{pais}"> <!-- Ahora se mapea directamente al objeto pais-->
                 <option value="">-- seleccionar --</option> <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
-                <!-- El metodo en el controlador llamado paises con la anotacion @ModelAtribute esta mapeado a este select-->
+                <!-- El metodo en el controlador llamado listaPaises con la anotacion @ModelAtribute esta mapeado a este select-->
                 <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
-                <!-- Al ser del tipo Map en el controlador utilizar el metodo entrySet() th:text="${pais.value}" es el valor que muestra en el formulario th:value="${pais.key}" es el valor que envia cuando se escoge la opcion en el formulario -->
             </select>
         </div>
-        <div th:if="${#fields.hasErrors('pais.id')}" th:errors="*{pais.id}"></div>
+        <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
     </div>
 
     <div>

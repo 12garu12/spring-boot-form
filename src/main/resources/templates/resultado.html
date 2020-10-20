@@ -25,8 +25,11 @@
     <!--<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>--> <!-- Para dar formato al dato de salida-->
     <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li> <!-- Para dar formato al dato de salida-->
 <!--------------------------------------------------------------------------------------------------------------------------------->
-<!--   Resultado de la lista desplegable en el formulario-->
+<!----------------------------------------------------------------------------------------------------------------------------->
+<!--   Objeto completo enviado desde el formulario     -->
     <li th:text="${usuario.pais.id}"></li>
+    <li th:text="${usuario.pais.codigo}"></li>
+    <li th:text="${usuario.pais.nombre}"></li>
 </ul>
 
 </body>
