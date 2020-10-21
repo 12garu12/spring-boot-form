@@ -61,8 +61,8 @@ public class Usuario {
     @NotNull // ahora se valida el objeto completo
     private Pais pais; // Para lista select o desplegable para el formulario con formato en la vista
 
-    @NotEmpty // tambien sirve para calcular el length de una lista que tenga elementos
-    private List<String> roles; // La idea es que el usuario pueda tener roles cuando se registra o en el formulario
+    @NotEmpty // valida que la lista no este vacia
+    private List<Role> roles; // La idea es que el usuario pueda tener roles cuando se registra o en el formulario
     // pueda seleccionar los roles a los cuales puda pertenecer el usuario la idea es que pueda tener mas de un rol
 
 
@@ -140,11 +140,11 @@ public class Usuario {
         this.pais = pais;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }

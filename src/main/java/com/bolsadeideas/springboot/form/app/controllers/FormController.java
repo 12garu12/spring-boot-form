@@ -2,8 +2,11 @@ package com.bolsadeideas.springboot.form.app.controllers;
 
 import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.editors.PaisPropertyEditor;
+import com.bolsadeideas.springboot.form.app.editors.RolesEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Pais;
+import com.bolsadeideas.springboot.form.app.models.domain.Role;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
+import com.bolsadeideas.springboot.form.app.services.IRoleService;
 import com.bolsadeideas.springboot.form.app.services.PaisService;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +48,12 @@ public class FormController {
     @Autowired
     private PaisPropertyEditor paisEditor;
 
+    @Autowired
+    private IRoleService roleService;
+
+    @Autowired
+    private RolesEditor rolesEditor;
+
     /* Otra alternativa en vez de utilizat de forma explicita en el codigo el validate y lo vamos a automatizar para que se valide con la anotacion @Valid de forma transparente si hacer nada en el
     procesar osea en el metodo handler (@PostMapping("/form")) para eso tenemos que implementar y registrar este validador en el InitBinder cuando se inicializa el proceso de validacion y el proceso
     de pasar los datos al objeto usuario pero eso se hace detras de escena por debajo lo hace el framework cuando se envian los datos del formulario el controlador los recibe y los puebla al objeto usuario
@@ -74,6 +83,21 @@ public class FormController {
         en nuestra clase Controller que registra el editor:*/
         binder.registerCustomEditor(Pais.class, "pais", paisEditor);
 
+        /*Dado que Spring no puede detectar el editor de propiedades, necesitaremos un método anotado con  @InitBinder
+        en nuestra clase Controller que registra el editor:*/
+        binder.registerCustomEditor(Role.class, "roles", rolesEditor);
+
+
+    }
+
+    /**
+     * Con @ModelAttribute pasamos el metodo que retorna la lista de los roles.
+     * Con inyección de dependencia roleService llamamos el metodo listar de la clase RoleServiceImpl.
+     * @return lista de la clase Role.
+     */
+    @ModelAttribute("listaRoles")
+    public List<Role> listaRoles(){
+        return roleService.listar();
     }
 
     /**

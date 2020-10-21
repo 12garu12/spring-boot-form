@@ -34,10 +34,12 @@
 
 <div>Roles</div> <!-- Aqui todo es igual-->
 <ul>
-    <li th:each="role: ${usuario.roles}" th:text="${role}"></li> <!--.
-    th:each="role: ${usuario.roles}" ciclo for each itera cada valor de la lista de String del campo roles en la clase Usuario.java.
-    th:text="${role}" valor que muestra cada valor del ciclo for each. -->
-</ul> <!-- Roles -->
+    <li th:each="role: ${usuario.roles}" th:text="${role.id} + ': ' +${role.nombre} + ' => ' + ${role.role}"></li> <!--
+    th:each="role: ${usuario.roles}" ciclo for each itera cada valor de la lista de Role del campo roles en la clase Usuario.java
+    th:text="${role.id}" muestra cada valor del objeto Role atributo id
+    ${role.nombre} muestra cada valor del objeto Role atributo nombre
+    ${role.role} muestra cada valor del objeto Role atributo role-->
+</ul> <!-- Roles. -->
 
 </body>
 </html>
