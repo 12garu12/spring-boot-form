@@ -92,6 +92,17 @@ public class FormController {
         return roles;
     }
 
+
+    @ModelAttribute("listaRolesMap") // pasa este metodo a la vista con el map de roles
+    public Map<String, String > listaRolesMap(){ /* lista para el campo checkbox en el formulario*/
+        Map<String, String> roles = new HashMap<>();
+        roles.put("ROLE_ADMIN", "Administrador");
+        roles.put("ROLE_USER", "Usuario");
+        roles.put("ROLE_MODERATOR", "Moderador");
+
+        return roles;
+    }
+
     /**
      * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
      * @return una lista de varios paises.
