@@ -26,6 +26,16 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     </div>
 
     <div>
+        <label>Roles</label>
+        <div th:each="role: ${listaRolesString}"> <!-- listaRolesString es el nombre que tiene la anotacion @ModelAttribute en el controlador con el metodo de lista de roles -->
+            <input type="checkbox" th:field="*{roles}" th:value="${role}"> <!-- checkbox opcion multiple html value valor que envia el formulario segun la opcion escogida -->
+            <label th:for="${#ids.prev('roles')}" th:text="${role}"></label> <!-- th:text="${role}" itera cada nombre del role en la lista de roles-->
+<!--        th:for="${#ids.prev('roles')}" es un helper de thymeleaf que itera sobre los distintos ids que tiene cada checkbox mapeado al campo roles por cada opcion             -->
+        </div>
+        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div><!-- hasErrors mapea el error segun el campo o atributo  y errors muestra el mensaje de error-->
+    </div> <!-- Role -->
+
+    <div>
         <label for="nombre">Nombre</label>
         <div>
             <input type="text" id="nombre" th:field="*{nombre}">

@@ -77,6 +77,22 @@ public class FormController {
     }
 
     /**
+     * La anotacion @ModelAttibute es utiliza para pasar el metodo con la lista a la vista form.html
+     * @return una lista de roles de usuario.
+     */
+    @ModelAttribute("listaRolesString")
+    public List<String> listaRolesString(){
+
+        List<String> roles = new ArrayList<>();
+
+        roles.add("ROLE_ADMIN"); // Esta es la forma como se registran o se guardan los roles con Spring Security
+        roles.add("ROLE_USER");
+        roles.add("ROLE_MODERATOR");
+
+        return roles;
+    }
+
+    /**
      * Metodo para utilizaren un campo del formulario con una lista desplegable con nombres de paises
      * @return una lista de varios paises.
      */
