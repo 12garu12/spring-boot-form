@@ -70,6 +70,8 @@ public class Usuario {
     registrado en el atributo como si o no a true o false por ejemplo para habilitar un usuario o deshabilitar o si un
     usuario se quiere registrar con una cuenta y quiere recibir email o noticias de la empresa */
 
+    @NotEmpty
+    private String genero; // para la opcion radio button en el formulario con el genero masculino femenino
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
@@ -160,4 +162,15 @@ public class Usuario {
     public void setHabilitar(Boolean habilitar) {
         this.habilitar = habilitar;
     }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+
+
 }

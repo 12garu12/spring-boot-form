@@ -18,8 +18,19 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         <div>
             <input type="checkbox" id="habilitar" th:field="*{habilitar}">
         </div>
-    </div>
-
+    </div> <!--habilitar-->
+    <div>
+        <label>Género</label>
+        <div>
+            <input type="radio" id="genero1" th:field="*{genero}" value="Hombre">
+            <label for="genero1">Hombre</label>
+        </div>
+        <div>
+            <input type="radio" id="genero2" th:field="*{genero}" value="Mujer">
+            <label for="genero2">Mujer</label>
+        </div>
+        <div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
+    </div> <!--genero -->
     <div>
         <label for="pais">País</label>
         <div>
