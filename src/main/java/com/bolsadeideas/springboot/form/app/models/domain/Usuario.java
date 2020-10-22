@@ -71,7 +71,7 @@ public class Usuario {
     usuario se quiere registrar con una cuenta y quiere recibir email o noticias de la empresa */
 
     @NotEmpty
-    private String genero; // para la opcion radio button en el formulario con el genero masculino femenino
+    private String genero; // para la opcion radio button en el formulario con el genero masculino femenino implementado en el controlador con @ModelAttribute
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 

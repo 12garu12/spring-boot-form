@@ -90,6 +90,11 @@ public class FormController {
 
     }
 
+    @ModelAttribute("genero")
+    public List<String> genero(){
+        return Arrays.asList("Hombre", "Mujer");
+    }
+
     /**
      * Con @ModelAttribute pasamos el metodo que retorna la lista de los roles.
      * Con inyección de dependencia roleService llamamos el metodo listar de la clase RoleServiceImpl.
