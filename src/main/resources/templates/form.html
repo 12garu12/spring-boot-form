@@ -14,6 +14,13 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
 <form th:action="@{/form}" th:object="${usuario}" method="post">
 
     <div>
+        <label for="habilitar">Habilitar </label>
+        <div>
+            <input type="checkbox" id="habilitar" th:field="*{habilitar}">
+        </div>
+    </div>
+
+    <div>
         <label for="pais">País</label>
         <div>
             <select id="pais" th:field="*{pais}"> <!-- Ahora se mapea directamente al objeto pais-->
@@ -23,8 +30,7 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
             </select>
         </div>
         <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
-    </div>
-
+    </div> <!-- pais -->
     <div>
         <label>Roles</label>
         <div th:each="role: ${listaRoles}"> <!-- listaRoles es el nombre que tiene la anotacion @ModelAttribute en el controlador con el metodo de lista de roles -->
@@ -34,20 +40,19 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         </div>
         <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div><!-- hasErrors mapea el error segun el campo o atributo  y errors muestra el mensaje de error-->
     </div> <!-- Role -->
-
     <div>
         <label for="nombre">Nombre</label>
         <div>
             <input type="text" id="nombre" th:field="*{nombre}">
         </div>
         <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-    </div>
+    </div> <!--nombre-->
     <div>
         <label for="apellido">Apellido</label>
         <div>
             <input type="text" id="apellido" th:field="*{apellido}">
         </div>
-    </div>
+    </div> <!-- apellido -->
     <div>
         <!-- el campo for es para mapear la entrada de tipo imput y va con el id -->
         <label for="username">Username</label>
@@ -65,28 +70,28 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
         ${} para una expresión con codigo Java
         @{} para mapeo de rutas URL-->
         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-    </div>
+    </div> <!-- username -->
     <div>
         <label for="password">Password</label>
         <div>
             <input type="password" id="password" th:field="*{password}">
         </div>
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-    </div>
+    </div> <!-- password -->
     <div>
         <label for="email">Email</label>
         <div>
             <input type="text" id="email" th:field="*{email}">
         </div>
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-    </div>
+    </div> <!-- email -->
     <div>
         <label for="identificador">Identificador</label>
         <div>
             <input type="text" id="identificador" th:field="*{identificador}">
         </div>
         <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
-    </div>
+    </div> <!--identificador -->
     <div>
         <label for="cuenta">Cuenta</label>
         <div>
@@ -94,7 +99,7 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
             <!-- El type="number" solo pondra en el input numeros enteros no permite strings-->
         </div>
         <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
-    </div>
+    </div> <!-- cuenta -->
     <div>
         <label for="fechaNacimiento">Fecha de Nacimiento</label>
         <div>
@@ -102,12 +107,12 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
             <!-- type="date" campo que pertenece html 5 es para entradas de tipo fecha. -->
         </div>
         <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
-    </div>
+    </div> <!-- fecha de nacimiento -->
     <div>
         <div>
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
         </div>
-    </div>
+    </div> <!-- boton -->
 </form>
 
 </body>

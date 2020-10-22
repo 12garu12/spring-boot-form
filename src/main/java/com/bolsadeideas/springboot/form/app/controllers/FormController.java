@@ -174,6 +174,7 @@ public class FormController {
         Usuario usuario = new Usuario(); // una forma es crear el objeto manualmente para pasar los datos del objeto a la vista form
         usuario.setNombre("Jhon");
         usuario.setApellido("Doe");
+        usuario.setHabilitar(true); // dejamos el atributo habilitar en true por defecto.
         usuario.setIdentificador("123.456.789-K"); // Como este dato no esta mapeado en el formulario saldra null y se perdera la infomacion
         model.addAttribute("titulo", "Formulario Usuarios");
         model.addAttribute("usuario", usuario); // para pasar datos a la vista con la anotación @ModelAtribute con el nombre user.

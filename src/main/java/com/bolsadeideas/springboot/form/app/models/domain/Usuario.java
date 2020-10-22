@@ -65,6 +65,11 @@ public class Usuario {
     private List<Role> roles; // La idea es que el usuario pueda tener roles cuando se registra o en el formulario
     // pueda seleccionar los roles a los cuales puda pertenecer el usuario la idea es que pueda tener mas de un rol
 
+    // Este campo no se valida por ser opcional.
+    private Boolean habilitar; /* para Checkbox habilitddo o desabilitado por ejemplo para marcar una opción y este quede
+    registrado en el atributo como si o no a true o false por ejemplo para habilitar un usuario o deshabilitar o si un
+    usuario se quiere registrar con una cuenta y quiere recibir email o noticias de la empresa */
+
 
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
@@ -146,5 +151,13 @@ public class Usuario {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Boolean getHabilitar() {
+        return habilitar;
+    }
+
+    public void setHabilitar(Boolean habilitar) {
+        this.habilitar = habilitar;
     }
 }
