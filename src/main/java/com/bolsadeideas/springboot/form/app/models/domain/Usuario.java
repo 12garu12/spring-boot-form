@@ -73,6 +73,9 @@ public class Usuario {
     @NotEmpty
     private String genero; // para la opcion radio button en el formulario con el genero masculino femenino implementado en el controlador con @ModelAttribute
 
+    private String valorSecreto; // para envio de datos que el usuario no puede ver en el formulario
+
+
 /*  METODOS SETTER AND GETTER **************************************************************************************/
 
     public String getNombre() {
@@ -171,6 +174,11 @@ public class Usuario {
         this.genero = genero;
     }
 
+    public String getValorSecreto() {
+        return valorSecreto;
+    }
 
-
+    public void setValorSecreto(String valorSecreto) {
+        this.valorSecreto = valorSecreto;
+    }
 }

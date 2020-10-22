@@ -120,6 +120,11 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
             <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
         </div>
     </div> <!-- boton -->
+    <input type="hidden" th:field="*{valorSecreto}"> <!-- type="hidden" es la opcion que oculta el valor del input
+    Tambien con @SessionAttributes en el controlador tambien mantiene los valores que se guardan en la sesion para persistir
+    el objeto completo con todos sus datos en la sesion HTTP  hasta que se procesa el formulario o bien los campos
+     que queremos mantener se pueden dejar como input hidden -->
+
 </form>
 
 </body>
