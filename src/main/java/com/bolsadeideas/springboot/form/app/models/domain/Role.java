@@ -41,4 +41,16 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public boolean equals(Object obj) {// Compara cada objeto de la lista del for each del form.html con la lista de usuarios
+
+        if (this == obj)return true;
+
+        if (!(obj instanceof Role))return false;
+
+        Role role = (Role) obj;
+
+        return this.id != null && this.id.equals(role.getId());
+    }
 }

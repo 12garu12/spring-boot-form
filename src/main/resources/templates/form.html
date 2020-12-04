@@ -30,11 +30,11 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     <div>
         <label for="pais">País</label>
         <div>
-            <select id="pais" th:field="*{pais}"> <!-- Ahora se mapea directamente al objeto pais-->
+            <select id="pais" th:field="*{pais}"> <!-- Ahora se mapea directamente al objeto pais y compara el id con la lista de los ids de cada pais-->
                 <option value="">-- seleccionar --</option>
                 <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
                 <!-- El metodo en el controlador llamado listaPaises con la anotacion @ModelAtribute esta mapeado a este select-->
-                <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
+                <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option> <!-- el valor es el id de cada pais para compararlo con el id del objeto Pais que escogimos para que salga por defecto-->
             </select>
         </div>
         <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
@@ -42,15 +42,11 @@ El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y ca
     <div>
         <label>Roles</label>
         <div th:each="role: ${listaRoles}">
-            <!-- listaRoles es el nombre que tiene la anotacion @ModelAttribute en el controlador con el metodo de lista de roles -->
-            <input type="checkbox" th:field="*{roles}" th:value="${role.id}">
-            <!-- checkbox opcion multiple html, value valor que envia el formulario segun la opcion escogida role.id por que es un objeto Role-->
+            <input type="checkbox" th:field="*{roles}" th:value="${role.id}"
+            th:checked="${#lists.contains(usuario.roles, role)}"> <!-- implementar el helper de thymeleaf -->
             <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
-            <!-- th:text="${role.nombre}" hace un llamado al atributo nombre de la clase Role-->
-            <!--        th:for="${#ids.prev('roles')}" es un helper de thymeleaf que itera sobre los distintos ids que tiene cada checkbox mapeado al campo roles por cada opcion             -->
         </div>
         <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
-        <!-- hasErrors mapea el error segun el campo o atributo  y errors muestra el mensaje de error-->
     </div> <!-- Role -->
     <div>
         <label for="nombre">Nombre</label>

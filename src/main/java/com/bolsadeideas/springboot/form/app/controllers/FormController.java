@@ -181,6 +181,8 @@ public class FormController {
         usuario.setHabilitar(true); // dejamos el atributo habilitar en true por defecto.
         usuario.setIdentificador("123.456.789-K"); // Como este dato no esta mapeado en el formulario saldra null y se perdera la infomacion
         usuario.setValorSecreto("Algún valor secreto ***"); // valor secreto por defecto con el @SessionAttributes tambien se pueden guardar valores ocultos
+        usuario.setPais(new Pais(3,"CL", "Chile")); // Para mostrar valores por defecto en este caso chile en la lista de paises que se despliega para mostrar paises en la vista
+        usuario.setRoles(Arrays.asList(new Role(2, "Usuario", "Role User"))); // para un usuario por defecto
         model.addAttribute("titulo", "Formulario Usuarios");
         model.addAttribute("usuario", usuario); // para pasar datos a la vista con la anotación @ModelAtribute con el nombre user.
         return "form";

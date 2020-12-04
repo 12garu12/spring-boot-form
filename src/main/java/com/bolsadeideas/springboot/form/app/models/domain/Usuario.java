@@ -63,7 +63,7 @@ public class Usuario {
     private Pais pais; // Para lista select o desplegable para el formulario con formato en la vista
 
     @NotEmpty // valida que la lista no este vacia
-    private List<Role> roles; // La idea es que el usuario pueda tener roles cuando se registra o en el formulario
+    private List<Role> roles; //  La idea es que el usuario pueda tener roles cuando se registra o en el formulario
     // pueda seleccionar los roles a los cuales puda pertenecer el usuario la idea es que pueda tener mas de un rol
 
     // Este campo no se valida por ser opcional.

@@ -51,4 +51,9 @@ public class Pais {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() { // es implementado para ser mapeado a la vista que despliega la lista de paises
+        return this.id.toString();
+    }
 }
