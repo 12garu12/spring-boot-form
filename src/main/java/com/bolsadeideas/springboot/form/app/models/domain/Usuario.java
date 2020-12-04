@@ -13,14 +13,14 @@ import java.util.List;
 public class Usuario {
 
     /* Utilizando expresiones regulares y la anotacion @Pattern para validacion
-    * [0-9] en un rango de 0 a 9
-    * {2} de 2 caracteres
-    * [.] seguido de un punto
-    * [\\d] cualquier digito de 0 a9
-    * {3} de 3 digitos
-    * [-] seguido de un guion
-    * [A-Z] un caracter de la A a la Z en mayuscula
-    * */
+     * [0-9] en un rango de 0 a 9
+     * {2} de 2 caracteres
+     * [.] seguido de un punto
+     * [\\d] cualquier digito de 0 a9
+     * {3} de 3 digitos
+     * [-] seguido de un guion
+     * [A-Z] un caracter de la A a la Z en mayuscula
+     * */
 
     @IdentificadorRegex /* Anotacion personalizada por nosotros mismos*/
     private String identificador;
@@ -35,7 +35,8 @@ public class Usuario {
     private String apellido;
 
     // 2- anotacion @NotEmpty valida que el campo sea diferente de null y que tenga una longitud, que el campo es requerido.
-    @NotBlank // Para la validacion que el campo no tenga espacios en blanco no es recomenda usarlo junto con la anotacion @NotEmpty por que las validara a todas solo con @NOtBlank esta bien
+    @NotBlank
+    // Para la validacion que el campo no tenga espacios en blanco no es recomenda usarlo junto con la anotacion @NotEmpty por que las validara a todas solo con @NOtBlank esta bien
     @Size(min = 3, max = 8) // Validacion de tamaño solo para String
     private String username; // los nombres de los atributos debe ser igual que los campos de la vista del formulario
     // para que los de la clase sean directamente mapeados a la clase.
@@ -76,7 +77,7 @@ public class Usuario {
     private String valorSecreto; // para envio de datos que el usuario no puede ver en el formulario
 
 
-/*  METODOS SETTER AND GETTER **************************************************************************************/
+    /*  METODOS SETTER AND GETTER **************************************************************************************/
 
     public String getNombre() {
         return nombre;

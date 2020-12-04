@@ -20,12 +20,14 @@
     <li th:text="${usuario.email}"></li>
     <li th:text="${usuario.identificador}"></li>
     <li th:text="${usuario.cuenta}"></li>
-<!------------------------------------------------------------------------------------------------------------------------------->
-<!--   DOS FORMAS PARA CAMBIAR EL FORMATO DE FECHA      -->
-    <!--<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>--> <!-- Para dar formato al dato de salida-->
-    <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li> <!-- Para dar formato al dato de salida-->
-<!----------------------------------------------------------------------------------------------------------------------------->
-<!--   Objeto completo enviado desde el formulario     -->
+    <!------------------------------------------------------------------------------------------------------------------------------->
+    <!--   DOS FORMAS PARA CAMBIAR EL FORMATO DE FECHA      -->
+    <!--<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></li>-->
+    <!-- Para dar formato al dato de salida-->
+    <li th:text="${#calendars.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}"></li>
+    <!-- Para dar formato al dato de salida-->
+    <!----------------------------------------------------------------------------------------------------------------------------->
+    <!--   Objeto completo enviado desde el formulario     -->
     <li th:text="${usuario.pais.id}"></li>
     <li th:text="${usuario.pais.codigo}"></li>
     <li th:text="${usuario.pais.nombre}"></li>

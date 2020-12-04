@@ -5,15 +5,14 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 public class Pais {
 
     /* Para validar cualquier campo es importante tener el en cuenta el tipo de dato para String @NotEmpty @NotBlank
-    * para Integer @NotNull y tambien tener en cuenta cambiar los datos en el select del formulario y los datos en la
-    * vista resultado*/
+     * para Integer @NotNull y tambien tener en cuenta cambiar los datos en el select del formulario y los datos en la
+     * vista resultado*/
     //@NotNull
     private Integer id;
 
     private String codigo;
 
     private String nombre;
-
 
 
     /*************************************************************************************************************/

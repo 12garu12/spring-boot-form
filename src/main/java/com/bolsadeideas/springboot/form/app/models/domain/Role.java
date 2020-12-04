@@ -7,7 +7,7 @@ public class Role {
     private String role;
 
     /* CONSTRUCTOR --------------------------------------------------------------------------------------------------*/
-    public Role(){
+    public Role() {
     }
 
     public Role(Integer id, String nombre, String role) {

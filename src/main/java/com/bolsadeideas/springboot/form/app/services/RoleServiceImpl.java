@@ -10,7 +10,7 @@ import java.util.List;
 /* Esta clase implementa los servicios de la interface IRoleService brinda los servicios del Role*/
 
 @Service
-public class RoleServiceImpl implements IRoleService{
+public class RoleServiceImpl implements IRoleService {
 
     private List<Role> roles;
 
@@ -29,8 +29,8 @@ public class RoleServiceImpl implements IRoleService{
     @Override
     public Role obtenerPorId(Integer id) {
         Role resultado = null;
-        for (Role role: this.roles){
-            if (role.getId() == id){
+        for (Role role : this.roles) {
+            if (role.getId() == id) {
                 resultado = role;
                 break;
             }
