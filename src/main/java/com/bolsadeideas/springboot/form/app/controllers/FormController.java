@@ -194,23 +194,15 @@ public class FormController {
      * @return retorna una vista llamada resultado.html con el resultado del procesamiento de los datos.
      */
     @PostMapping("/form")
-    public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {  /*1- Anotación @Valid para validar los datos mapeados hacia la clase usuario
-    3- interface BindingResult contiene los mensajes de error de la validacion en caso de que hayan errores va unido a @Valid justo despues de esta anotación como regla
-    va de primero en los argumentos el objeto validado y segundo el BindingResul
-    4- @ModelAttribute para cambiar el nombre con que pasamos los datos a la vista*/
+    public String procesar(@Valid Usuario usuario, BindingResult result, Model model) {
 
-//        validador.validate(usuario, result); // la inyeccion hace el llamado al metodo validate de la clase UsuarioValidador y pasa el target(objeto usuario)
-        // pasamos para validar el objeto y el objeto de BindingResult que es el objeto que pasa los errores
-
-        /* Para automatizar los mensajes de error que los maneje thymeleaf y Spring Framework de forma automatica he implicita*/
         if (result.hasErrors()) {
             model.addAttribute("titulo", "Resultado del formulario"); // Solo se va a mostrar cuando ocurra un error para validar
             return "form";
         }
 
-        return "recirect:/ver";
+        return "redirect:/ver";
     }
-
 
     /**
      * Metodo para corregir el error en el resultado.html si el cliente vuelve y refresca la pagiga(f5) se reenvia la informacion
