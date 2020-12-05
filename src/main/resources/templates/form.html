@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${titulo}"></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
 
@@ -11,122 +12,142 @@
 <!-- FORMULARIO -->
 <!-- El target action especifica la ruta del controlador y el tipo de metodo POST para procesar los datos los datos del formulario con el metodo y la ruta especificada
 El th:object="${usuario}" para hacer referencia el mapeo del objeto Usuario y cada uno de sus campos al formulario -->
-<form th:action="@{/form}" th:object="${usuario}" method="post">
+<div class="container">
+    <form th:action="@{/form}" th:object="${usuario}" method="post">
 
-    <div>
-        <label for="habilitar">Habilitar </label>
-        <div>
-            <input type="checkbox" id="habilitar" th:field="*{habilitar}">
-        </div>
-    </div> <!--habilitar-->
-    <div>
-        <label>Género</label>
-        <div th:each="gen: ${genero}">
-            <input type="radio" th:field="*{genero}" th:value="${gen}">
-            <label th:for="${#ids.prev('genero')}" th:text="${gen}">Hombre</label>
-        </div>
-        <div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
-    </div> <!--genero -->
-    <div>
-        <label for="pais">País</label>
-        <div>
-            <select id="pais" th:field="*{pais}"> <!-- Ahora se mapea directamente al objeto pais y compara el id con la lista de los ids de cada pais-->
-                <option value="">-- seleccionar --</option>
-                <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
-                <!-- El metodo en el controlador llamado listaPaises con la anotacion @ModelAtribute esta mapeado a este select-->
-                <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option> <!-- el valor es el id de cada pais para compararlo con el id del objeto Pais que escogimos para que salga por defecto-->
-            </select>
-        </div>
-        <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
-    </div> <!-- pais -->
-    <div>
-        <label>Roles</label>
-        <div th:each="role: ${listaRoles}">
-            <input type="checkbox" th:field="*{roles}" th:value="${role.id}"
-            th:checked="${#lists.contains(usuario.roles, role)}"> <!-- implementar el helper de thymeleaf -->
-            <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
-        </div>
-        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
-    </div> <!-- Role -->
-    <div>
-        <label for="nombre">Nombre</label>
-        <div>
-            <input type="text" id="nombre" th:field="*{nombre}">
-        </div>
-        <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
-    </div> <!--nombre-->
-    <div>
-        <label for="apellido">Apellido</label>
-        <div>
-            <input type="text" id="apellido" th:field="*{apellido}">
-        </div>
-    </div> <!-- apellido -->
-    <div>
-        <!-- el campo for es para mapear la entrada de tipo imput y va con el id -->
-        <label for="username">Username</label>
-        <div>
-            <!-- el campo value es con el nombre de la clase pero en minuscula como lo es usuario y por debajo hace la consulta al
-            metodo getUsername y del mismo modo para cada entrada del formulario
-            th:field="*{username} Para mapear el campo de un formulario a un objeto con thymeleaf y Spring hacia los atributos de una clase en este caso la clase Usuario.
-            utilizamos el (*) hace referencia a un mapeo o asignacion de un campo a un atributo de una clase-->
-            <input type="text" id="username" th:field="*{username}">
-        </div>
-        <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult
-        Estos mensajes de error los manejara thymeleaf y Spring
-        # para utilizar un objeto propio de thymeleaf un helper para validar y obtener los mensajes de error
-        *{} para mapear campos al formulario ya sea de un atributo entity
-        ${} para una expresión con codigo Java
-        @{} para mapeo de rutas URL-->
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
-    </div> <!-- username -->
-    <div>
-        <label for="password">Password</label>
-        <div>
-            <input type="password" id="password" th:field="*{password}">
-        </div>
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-    </div> <!-- password -->
-    <div>
-        <label for="email">Email</label>
-        <div>
-            <input type="text" id="email" th:field="*{email}">
-        </div>
-        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-    </div> <!-- email -->
-    <div>
-        <label for="identificador">Identificador</label>
-        <div>
-            <input type="text" id="identificador" th:field="*{identificador}">
-        </div>
-        <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
-    </div> <!--identificador -->
-    <div>
-        <label for="cuenta">Cuenta</label>
-        <div>
-            <input type="number" id="cuenta" th:field="*{cuenta}">
-            <!-- El type="number" solo pondra en el input numeros enteros no permite strings-->
-        </div>
-        <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
-    </div> <!-- cuenta -->
-    <div>
-        <label for="fechaNacimiento">Fecha de Nacimiento</label>
-        <div>
-            <input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd">
-            <!-- type="date" campo que pertenece html 5 es para entradas de tipo fecha. -->
-        </div>
-        <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
-    </div> <!-- fecha de nacimiento -->
-    <div>
-        <div>
-            <input type="submit" value="Enviar"> <!-- Boton para el envio de los datos del formulario -->
-        </div>
-    </div> <!-- boton -->
-    <input type="hidden" th:field="*{valorSecreto}"> <!-- type="hidden" es la opcion que oculta el valor del input
+        <div class="form-group row">
+            <label for="habilitar" class="col-form-label col-sm-2">Habilitar </label>
+            <div class="row col-sm-4">
+                <input type="checkbox" id="habilitar" th:field="*{habilitar}" class="form-control col-sm-1">
+            </div>
+        </div> <!--habilitar-->
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">Género</label>
+            <div th:each="gen: ${genero}" class="row col-sm-2">
+                <input type="radio" th:field="*{genero}" th:value="${gen}" class="form-control col-sm-2">
+                <label th:for="${#ids.prev('genero')}" th:text="${gen}" class="col-form-label col-sm-2 ">Hombre</label>
+            </div>
+            <div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}" class="alert alert-danger"></div>
+        </div> <!--genero -->
+
+        <div class="form-group row">
+            <label for="pais" class="col-form-label col-sm-2">País</label>
+            <div class="row col-sm-4">
+                <select id="pais" th:field="*{pais}"
+                        class="form-control"> <!-- Ahora se mapea directamente al objeto pais y compara el id con la lista de los ids de cada pais-->
+                    <option value="">-- seleccionar --</option>
+                    <!-- opcion por defecto si el usuario no lo selecciona, va enviar el valor del value que es vacio y lo va a validar y dira que el campo es requerido -->
+                    <!-- El metodo en el controlador llamado listaPaises con la anotacion @ModelAtribute esta mapeado a este select-->
+                    <option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option> <!-- el valor es el id de cada pais para compararlo con el id del objeto Pais que escogimos para que salga por defecto-->
+                </select>
+            </div>
+            <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}" class="alert alert-danger"></div>
+        </div> <!-- pais -->
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">Roles</label>
+            <div th:each="role: ${listaRoles}" class="row col-sm-2">
+                <input type="checkbox" th:field="*{roles}" th:value="${role.id}"
+                       th:checked="${#lists.contains(usuario.roles, role)}" class="form-control col-sm-2"> <!-- implementar el helper de thymeleaf -->
+                <label th:for="${#ids.prev('roles')}" th:text="${role.nombre}" class="col-form-label col-sm-2 "></label>
+            </div>
+            <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="alert alert-danger"></div>
+        </div> <!-- Roles -->
+
+        <div class="form-group row">
+            <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+            <div class="row col-sm-4">
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control">
+            </div>
+            <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="alert alert-danger"></div>
+        </div> <!--nombre-->
+
+        <div class="form-group row">
+            <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+            <div class="row col-sm-4">
+                <input type="text" id="apellido" th:field="*{apellido}" class="form-control">
+            </div>
+            <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="alert alert-danger"></div>
+        </div> <!-- apellido -->
+
+        <div class="form-group row">
+            <!-- el campo for es para mapear la entrada de tipo imput y va con el id -->
+            <label for="username" class="col-form-label col-sm-2">Username</label>
+            <div class="row col-sm-4">
+                <!-- el campo value es con el nombre de la clase pero en minuscula como lo es usuario y por debajo hace la consulta al
+                metodo getUsername y del mismo modo para cada entrada del formulario
+                th:field="*{username} Para mapear el campo de un formulario a un objeto con thymeleaf y Spring hacia los atributos de una clase en este caso la clase Usuario.
+                utilizamos el (*) hace referencia a un mapeo o asignacion de un campo a un atributo de una clase-->
+                <input type="text" id="username" th:field="*{username}" class="form-group">
+            </div>
+            <!-- para los mensajes de eror de la validacion en el controlador con @valid  BindingResult
+            Estos mensajes de error los manejara thymeleaf y Spring
+            # para utilizar un objeto propio de thymeleaf un helper para validar y obtener los mensajes de error
+            *{} para mapear campos al formulario ya sea de un atributo entity
+            ${} para una expresión con codigo Java
+            @{} para mapeo de rutas URL-->
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger"></div>
+        </div> <!-- username -->
+
+        <div class="form-group row">
+            <label for="password" class="col-form-label col-sm-2">Password</label>
+            <div class="row col-sm-4">
+                <input type="password" id="password" th:field="*{password}" class="form-group">
+            </div>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></div>
+        </div> <!-- password -->
+
+        <div class="form-group row">
+            <label for="email" class="col-form-label col-sm-2">Email</label>
+            <div class="row col-sm-4">
+                <input type="text" id="email" th:field="*{email}" class="form-group">
+            </div>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></div>
+        </div> <!-- email -->
+
+        <div class="form-group row">
+            <label for="identificador" class="col-form-label col-sm-2">Identificador</label>
+            <div class="row col-sm-4">
+                <input type="text" id="identificador" th:field="*{identificador}" class="form-control">
+            </div>
+            <div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}" class="alert alert-danger"></div>
+        </div> <!--identificador -->
+
+        <div class="form-group row">
+            <label for="cuenta" class="col-form-label col-sm-2">Cuenta</label>
+            <div class="row col-sm-4">
+                <input type="number" id="cuenta" th:field="*{cuenta}" class="form-control">
+                <!-- El type="number" solo pondra en el input numeros enteros no permite strings-->
+            </div>
+            <div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}" class="alert alert-danger"></div>
+        </div> <!-- cuenta -->
+
+        <div class="form-group row">
+            <label for="fechaNacimiento" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
+            <div class="row col-sm-4">
+                <input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy/MM/dd" class="form-control">
+                <!-- type="date" campo que pertenece html 5 es para entradas de tipo fecha. -->
+            </div>
+            <div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="alert alert-danger"></div>
+        </div> <!-- fecha de nacimiento -->
+
+        <div class="form-control row">
+            <div class="row col-sm-4">
+                <input type="submit" value="Enviar" class="btn btn-success"> <!-- Boton para el envio de los datos del formulario -->
+            </div>
+        </div> <!-- boton -->
+
+        <input type="hidden" th:field="*{valorSecreto}"> <!-- type="hidden" es la opcion que oculta el valor del input
     Tambien con @SessionAttributes en el controlador tambien mantiene los valores que se guardan en la sesion para persistir
     el objeto completo con todos sus datos en la sesion HTTP  hasta que se procesa el formulario o bien los campos
      que queremos mantener se pueden dejar como input hidden -->
 
-</form>
+    </form>
+</div>
+
+
+
 
 </body>
 </html>
