@@ -53,6 +53,10 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
+        if (request.getMethod().equalsIgnoreCase("post")){ // para aplicar este metodo solo al metodo de tipo get en el controlador obtenemos el metodo con getMethod() y con equalsIgnoreCase("post") colocamos el nombre del tipo de metodo en el controlador
+            return; // este metodo es de tipo void
+        }
+
         long TiempoFin = System.currentTimeMillis(); // tiempo del sistema actual.
         long tiempoInicio = (Long) request.getAttribute("tiempoInicio"); // Obtiene el valor del objeto guardado y como es de tipo Object se le hace un cast.
         long tiempotranscurrido = TiempoFin - tiempoInicio; // Para obtener el tiempo transcurrido restamos el tiempo final menos el inicial.
