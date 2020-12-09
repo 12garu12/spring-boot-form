@@ -7,10 +7,9 @@
 </head>
 <body>
 
-<div class="alert alert-success">
-    <span th:text="'Tiempo transcurrido: ' + ${tiempoTranscurrido} + ' en milisegundos'"></span>
-</div>
-
+<!-- para reutilizar un fragmento que esta en el archivo tiempo.html, en la ruta templates/components/tiempo
+y despues el nombre de el fragmento -->
+<section th:replace="components/tiempo :: interceptor"></section>
 
 <div class="container">
     <a th:href="@{/form}" class="btn btn-success btn-lg my-3">Volver</a>
