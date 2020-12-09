@@ -47,7 +47,26 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
         Thread.sleep(demora); //Hace que el subproceso que se está ejecutando se suspenda (cese temporalmente la ejecución) durante el número especificado de milisegundos
 
 
-        return true;
+
+        response.sendRedirect(request.getContextPath().concat("/login")); /* con el Objeto response para cambiar la ruta y el metodo sendRedirect().
+        siempre la ruta base tiene que partir del contexto del path base o la ruta base de nuestra aplicación request.getContextPath()
+        por lo general el getContextPath() deberia ir vacio ya que no tiene un nombre de proyecto en la ruta pero lo podria tener
+        se podría indicar en la configuración de spring boot cual es nuestra ruta base aunque en la mayoria de los casos no es necesario
+        es en caso de que lo tengamos o si publicamos por ejemplo en un servidor externo el context path seria el nombre del war que estemos
+        publicando por ejemplo en un tomcat externo o en cualquier servidor de aplicaciones. En este ejemplo la ruta "/login" no exite es para el
+        ejemplo la idea es para redirigir a una pagina por ejemplo el login o donde queremos manejar esta respuesta que fallo en la validación.
+        */
+
+        return false; /* Cuando un contexto de validacion falla por ejemplo un loggin de usuario preguntando si el usuario esta
+        autenticado si el return es true se deja pasar al controlador para que invoque los metodos handler sin ningun problema
+        de lo contrario si no tiene sesion retornamos un false de esta manera los metodos del controlador no se invocan y en
+        ningun momento se van a ejecutar  por que con false no continua con la ejecución normal el flujo de la aplicación
+        y queda hasta ahí y se maneja la respuesta en el interceptor por ejemplo redirigir a otra ruta
+
+
+        */
+
+
     }
 
     @Override
